@@ -36,6 +36,10 @@ sudo puppet apply -dv /etc/taskize/init.pp
 apt-get install -y libapache2-mod-proxy-html libxml2-dev postgres-xc-client php5-pgsql docker-engine
 a2enmod ssl
 
+mkdir /etc/apache2/ssl
+cp apache.cert /etc/apache2/ssl/
+cp apache.key /etc/apache2/ssl/
+
 ##################
 ###PostgreSQL
 ##################

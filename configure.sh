@@ -40,6 +40,8 @@ mkdir /etc/apache2/ssl
 cp apache2/apache.crt /etc/apache2/ssl/
 cp apache2/apache.key /etc/apache2/ssl/
 
+service apache2 restart
+
 ##################
 ###PostgreSQL
 ##################

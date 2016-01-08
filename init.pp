@@ -60,30 +60,6 @@ class taskize_tomcat {
 }
 
 
-class taskize_apache {
-	class { 'apache': 
-		service_ensure => "running"
-	}
-
-  apache::vhost { 'webserver.puppetlabs.com-http':    
-    servername      => 'webserver.taskize.com',    
-    port            => '80',    
-    docroot         => '/var/www/webserver',    
-    redirect_status => 'permanent',    
-    redirect_dest   => 'https://172.16.9.206/',  
-  }  
-
-  apache::vhost { 'webserver.puppetlabs.com-https':    
-    servername      => 'webserver.taskize.com',
-    port            => '443',    
-    docroot         => '/var/www/webserver',    
-    ssl             => true,    
-    ssl_cert        => '/etc/taskize/',  
-    ssl_key         => '/etc/pki/tls/private/localhost.key',
-  }
-}
-
-
 ###Init
 node default {
 	include taskize_users

@@ -37,8 +37,8 @@ apt-get install -y libapache2-mod-proxy-html libxml2-dev postgres-xc-client php5
 a2enmod ssl
 
 mkdir /etc/apache2/ssl
-cp apache.cert /etc/apache2/ssl/
-cp apache.key /etc/apache2/ssl/
+cp apache2/apache.cert /etc/apache2/ssl/
+cp apache2/apache.key /etc/apache2/ssl/
 
 ##################
 ###PostgreSQL

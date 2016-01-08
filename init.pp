@@ -5,7 +5,7 @@ class taskize_users {
 
 	user { 'flynn':
 		ensure => present,
-		comment => 'bogo user',
+		comment => 'flynn user',
 		home => '/home/flynn',
 		managehome => true,
 		groups => 'flynn',

@@ -10,11 +10,10 @@ sudo apt-get install puppet git -y
 sudo puppet module install jeffmccune-motd
 sudo puppet module install saz-sudo
 sudo puppet module install puppetlabs-tomcat
-sudo puppet module install puppetlabs-apache
 
 ###Folders
 sudo mkdir /etc/taskize
-git clone <repo> /etc/taskize
+git clone https://github.com/davidecostantini/test_repo.git /etc/taskize
 
 ###Puppetize
 sudo puppet apply -dv /etc/taskize/init.pp

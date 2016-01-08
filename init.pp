@@ -51,8 +51,6 @@ class taskize_tomcat {
 	#	user => "flynn",
 	#}
 
-	tomcat::service { 'default': }
-
 	tomcat::instance { 'test':
 		source_url => 'http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz'
 	}->

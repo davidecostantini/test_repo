@@ -3,14 +3,15 @@ CREATE DATABASE taskize;
 \connect taskize
 
 CREATE USER flynn WITH PASSWORD 'test_password';
-GRANT ALL PRIVILEGES ON DATABASE  taskize to flynn;
 
 CREATE TABLE taskize (
 	id INT PRIMARY KEY     NOT NULL,
 	col2	CHAR(50)
 );
 
-
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public 
+TO flynn;
 
 INSERT INTO taskize VALUES
     (0,'Bananas');

@@ -33,8 +33,17 @@ sudo puppet apply -dv /etc/taskize/init.pp
 ##################
 ###Apache
 ##################
-apt-get install -y libapache2-mod-proxy-html libxml2-dev postgres-xc-client php5-pgsql docker-engine
+apt-get install -y apache2 libapache2-mod-proxy-html libxml2-dev postgres-xc-client php5-pgsql docker-engine
 a2enmod ssl
+a2enmod proxy
+a2enmod proxy_http
+a2enmod proxy_ajp
+a2enmod rewrite
+a2enmod deflate
+a2enmod headers
+a2enmod proxy_balancer
+a2enmod proxy_connect
+a2enmod proxy_html
 
 mkdir /etc/apache2/ssl
 cp apache2/apache.crt /etc/apache2/ssl/
@@ -45,6 +54,8 @@ service apache2 restart
 ##################
 ###PostgreSQL
 ##################
+apt-get install docker.io -y
+apt-get install postgresql-client-common postgresql-client -y
 PS_PWD="test1"
 rm -rf /tmp/docker-library
 git clone https://github.com/docker-library/postgres.git /tmp/docker-library
@@ -59,8 +70,11 @@ PGPASSWORD="$PS_PWD" psql -h localhost -Upostgres < initialize_db.sql
 ##################
 ###IPtables
 ##################
+iptables -P INPUT ACCEPT
+iptables -F
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 8080 -s 127.0.0.1 -j ACCEPT
 iptables -P INPUT DROP
 /sbin/iptables-save

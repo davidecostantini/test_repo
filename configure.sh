@@ -73,7 +73,8 @@ PGPASSWORD="$PS_PWD" psql -h localhost -Upostgres < initialize_db.sql
 iptables -P INPUT ACCEPT
 iptables -F
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport 8080 -s 127.0.0.1 -j ACCEPT
 iptables -A INPUT -p tcp --dport 5432 -s 127.0.0.1 -j ACCEPT
